@@ -16,10 +16,6 @@ export default defineConfig({
     host: 'localhost',
   },
   plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md'])],
-  // Uncomment this if you are using workers.
-  // worker: {
-  //  plugins: [ nxViteTsPaths() ],
-  // },
   build: {
     outDir: '../dist/tudigo-test',
     emptyOutDir: true,
@@ -28,5 +24,5 @@ export default defineConfig({
       transformMixedEsModules: true,
     },
   },
-  base: '/tudigo/',
+  base: '/',
 });
