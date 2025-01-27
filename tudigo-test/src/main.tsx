@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      <BrowserRouter basename="/tudigo">
         <App />
       </BrowserRouter>
     </QueryClientProvider>
