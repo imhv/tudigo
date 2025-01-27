@@ -2,7 +2,9 @@
   "name": "@starwars/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build": "npx nx build tudigo-test"
+  },
   "private": true,
   "dependencies": {
     "@tanstack/react-query": "^5.64.2",
