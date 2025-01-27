@@ -1,0 +1,9 @@
+{
+  "name": "tudigo-test",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "tudigo-test/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project tudigo-test --web",
+  "targets": {}
+}
