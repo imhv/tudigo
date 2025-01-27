@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
+import { Planet } from './usePlanets';
 
 export const PlanetsList = () => {
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error } = useQuery<{ results: Planet[] }>({
     queryKey: ['planets'],
     queryFn: async () => {
       const response = await fetch('https://swapi.dev/api/planets/');
@@ -12,7 +13,7 @@ export const PlanetsList = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center w-full justify-center items-center min-h-screen">
+      <div className="flex  w-full justify-center items-center min-h-screen">
         <p className="text-lg font-semibold">Loading planets...</p>
       </div>
     );
@@ -35,7 +36,7 @@ export const PlanetsList = () => {
           Explore Star Wars Planets
         </h1>
         <div className="flex flex-wrap justify-center gap-4">
-          {data.results.map((planet: any) => (
+          {data?.results.map((planet: Planet) => (
             <PlanetCard key={planet.name} planet={planet} />
           ))}
         </div>
@@ -44,7 +45,7 @@ export const PlanetsList = () => {
   );
 };
 
-const PlanetCard = ({ planet }: { planet: any }) => (
+const PlanetCard = ({ planet }: { planet: Planet }) => (
   <div className="rounded-lg w-80 p-4 border bg-card text-card-foreground shadow-sm hover:shadow-md transition-all">
     <div className="p-6 space-y-4">
       <h2 className="text-2xl font-semibold tracking-tight">{planet.name}</h2>

@@ -9,8 +9,9 @@ import {
   Baby,
   User,
 } from 'lucide-react';
+import { Person, usePerson } from './usePeople';
 
-const PersonCard = ({ person, index }: { person: any; index: number }) => {
+const PersonCard = ({ person, index }: { person: Person; index: number }) => {
   const navigate = useNavigate();
 
   return (
@@ -93,17 +94,11 @@ export const PeopleList = () => {
 
 export const PersonDetail = () => {
   const { id } = useParams();
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['person', id],
-    queryFn: async () => {
-      const response = await fetch(`https://swapi.dev/api/people/${id}/`);
-      if (!response.ok) throw new Error('Failed to fetch person');
-      return response.json();
-    },
-  });
+  const { data, isLoading, error } = usePerson(id ?? '');
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading person</div>;
+  if (!data) return null;
 
   return (
     <div className="min-h-screen">
@@ -148,7 +143,7 @@ const InfoRow = ({
 }: {
   label: string;
   value: string;
-  icon: any;
+  icon: React.ElementType;
 }) => (
   <div className="flex border-b py-2 items-center">
     <Icon className="w-5 h-5 text-blue-600 mr-2" />
